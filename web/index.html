@@ -38,6 +38,15 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <script>
+    fetch('config.json')
+      .then(response => response.json())
+      .then(config => {
+        var script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleMapsApiKey}`;
+        document.head.appendChild(script);
+      });
+  </script>  
 </head>
 <body>
   <script>
