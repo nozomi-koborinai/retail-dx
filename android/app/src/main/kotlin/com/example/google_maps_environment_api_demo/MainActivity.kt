@@ -1,4 +1,4 @@
-package com.example.retail_dx
+package com.example.google_maps_environment_api_demo
 
 import io.flutter.embedding.android.FlutterActivity
 
