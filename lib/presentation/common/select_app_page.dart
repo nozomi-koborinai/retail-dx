@@ -31,7 +31,7 @@ class SelectAppPage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return const MapsViewDXPage();
+                      return const ItemListPage();
                     },
                   ),
                 );
