@@ -7,7 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:retail_dx/domain/repository/shop_info_repository.dart';
 import 'package:retail_dx/domain/repository/shop_item_repository.dart';
+import 'package:retail_dx/infrastructure/firebase/mock/mock_shop_info_repository.dart';
 import 'package:retail_dx/infrastructure/firebase/mock/mock_shop_item_repository.dart';
 import 'package:retail_dx/presentation/app.dart';
 
@@ -68,7 +70,8 @@ Future<void> main() async {
         ),
 
         // Repository の上書き
-        shopItemRepositoryProvider.overrideWithValue(MockShopItemRepository())
+        shopItemRepositoryProvider.overrideWithValue(MockShopItemRepository()),
+        shopInfoRepositoryProvider.overrideWithValue(MockShopInfoRepository()),
 
         // アプリ情報の上書き
         // appInfoProvider.overrideWith(
