@@ -15,6 +15,10 @@ _$ShopItemDocumentImpl _$$ShopItemDocumentImplFromJson(
       shopIds:
           (json['shopIds'] as List<dynamic>).map((e) => e as String).toList(),
       price: json['price'] as int,
+      createdAt: _$JsonConverterFromJson<Object, DateTime>(
+          json['createdAt'], const TimestampConverter().fromJson),
+      updatedAt: _$JsonConverterFromJson<Object, DateTime>(
+          json['updatedAt'], const TimestampConverter().fromJson),
     );
 
 Map<String, dynamic> _$$ShopItemDocumentImplToJson(
@@ -25,4 +29,20 @@ Map<String, dynamic> _$$ShopItemDocumentImplToJson(
       'imageUrl': instance.imageUrl,
       'shopIds': instance.shopIds,
       'price': instance.price,
+      'createdAt': _$JsonConverterToJson<Object, DateTime>(
+          instance.createdAt, const TimestampConverter().toJson),
+      'updatedAt': _$JsonConverterToJson<Object, DateTime>(
+          instance.updatedAt, const TimestampConverter().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

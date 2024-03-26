@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../converter.dart';
+
 part 'shop_item_document.freezed.dart';
 part 'shop_item_document.g.dart';
 
@@ -11,6 +13,8 @@ class ShopItemDocument with _$ShopItemDocument {
     required String imageUrl,
     required List<String> shopIds,
     required int price,
+    @TimestampConverter() DateTime? createdAt,
+    @TimestampConverter() DateTime? updatedAt,
   }) = _ShopItemDocument;
 
   factory ShopItemDocument.fromJson(Map<String, dynamic> json) =>

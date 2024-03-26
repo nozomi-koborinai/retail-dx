@@ -25,6 +25,10 @@ mixin _$ShopItemDocument {
   String get imageUrl => throw _privateConstructorUsedError;
   List<String> get shopIds => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +47,9 @@ abstract class $ShopItemDocumentCopyWith<$Res> {
       String category,
       String imageUrl,
       List<String> shopIds,
-      int price});
+      int price,
+      @TimestampConverter() DateTime? createdAt,
+      @TimestampConverter() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -64,6 +70,8 @@ class _$ShopItemDocumentCopyWithImpl<$Res, $Val extends ShopItemDocument>
     Object? imageUrl = null,
     Object? shopIds = null,
     Object? price = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -86,6 +94,14 @@ class _$ShopItemDocumentCopyWithImpl<$Res, $Val extends ShopItemDocument>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -103,7 +119,9 @@ abstract class _$$ShopItemDocumentImplCopyWith<$Res>
       String category,
       String imageUrl,
       List<String> shopIds,
-      int price});
+      int price,
+      @TimestampConverter() DateTime? createdAt,
+      @TimestampConverter() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -122,6 +140,8 @@ class __$$ShopItemDocumentImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? shopIds = null,
     Object? price = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$ShopItemDocumentImpl(
       name: null == name
@@ -144,6 +164,14 @@ class __$$ShopItemDocumentImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -156,7 +184,9 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
       required this.category,
       required this.imageUrl,
       required final List<String> shopIds,
-      required this.price})
+      required this.price,
+      @TimestampConverter() this.createdAt,
+      @TimestampConverter() this.updatedAt})
       : _shopIds = shopIds;
 
   factory _$ShopItemDocumentImpl.fromJson(Map<String, dynamic> json) =>
@@ -178,10 +208,16 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
 
   @override
   final int price;
+  @override
+  @TimestampConverter()
+  final DateTime? createdAt;
+  @override
+  @TimestampConverter()
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ShopItemDocument(name: $name, category: $category, imageUrl: $imageUrl, shopIds: $shopIds, price: $price)';
+    return 'ShopItemDocument(name: $name, category: $category, imageUrl: $imageUrl, shopIds: $shopIds, price: $price, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -195,13 +231,24 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(other._shopIds, _shopIds) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, category, imageUrl,
-      const DeepCollectionEquality().hash(_shopIds), price);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      category,
+      imageUrl,
+      const DeepCollectionEquality().hash(_shopIds),
+      price,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -220,11 +267,14 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
 
 abstract class _ShopItemDocument implements ShopItemDocument {
   const factory _ShopItemDocument(
-      {required final String name,
-      required final String category,
-      required final String imageUrl,
-      required final List<String> shopIds,
-      required final int price}) = _$ShopItemDocumentImpl;
+          {required final String name,
+          required final String category,
+          required final String imageUrl,
+          required final List<String> shopIds,
+          required final int price,
+          @TimestampConverter() final DateTime? createdAt,
+          @TimestampConverter() final DateTime? updatedAt}) =
+      _$ShopItemDocumentImpl;
 
   factory _ShopItemDocument.fromJson(Map<String, dynamic> json) =
       _$ShopItemDocumentImpl.fromJson;
@@ -239,6 +289,12 @@ abstract class _ShopItemDocument implements ShopItemDocument {
   List<String> get shopIds;
   @override
   int get price;
+  @override
+  @TimestampConverter()
+  DateTime? get createdAt;
+  @override
+  @TimestampConverter()
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$ShopItemDocumentImplCopyWith<_$ShopItemDocumentImpl> get copyWith =>
