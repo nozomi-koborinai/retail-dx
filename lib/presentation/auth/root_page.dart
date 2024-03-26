@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:retail_dx/presentation/common/select_app_page.dart';
 
 import '../../application/auth/register_anonymous_user_usecase.dart';
 import '../../infrastructure/firebase/auth_repository.dart';
-import '../google_maps/maps_view_page.dart';
 
 final rootPageKey = Provider((ref) => GlobalKey<NavigatorState>());
 
@@ -26,7 +26,7 @@ class RootPage extends HookConsumerWidget {
     return Scaffold(
       key: ref.watch(rootPageKey),
       body: AuthDependentBuilder(
-        onAuthenticated: (userId) => const MapsViewPage(),
+        onAuthenticated: (userId) => const SelectAppPage(),
         onUnAuthenticated: () => const Center(
           child: CircularProgressIndicator(),
         ),
