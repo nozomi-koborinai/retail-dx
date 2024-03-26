@@ -1,4 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../shop_item.dart';
+
+final shopItemRepositoryProvider = Provider<ShopItemRepository>(
+  (ref) => throw UnimplementedError(),
+);
 
 abstract interface class ShopItemRepository {
   Future<List<ShopItem>> fetchAll();
