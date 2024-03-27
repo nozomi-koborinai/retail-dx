@@ -5,58 +5,134 @@ class MockShopItemRepository implements ShopItemRepository {
   // mock data
   final List<ShopItem> shopItems = [
     const ShopItem(
-      id: '1',
+      id: 'bag_1',
       name: 'bag_1',
       price: 30000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
       category: 'BAG',
-      shopIds: ['1', '2', '3'],
+      quantity: 4,
+      shopId: '1',
     ),
     const ShopItem(
-      id: '2',
+      id: 'bag_1',
+      name: 'bag_1',
+      price: 30000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      quantity: 2,
+      shopId: '2',
+    ),
+    const ShopItem(
+      id: 'bag_1',
+      name: 'bag_1',
+      price: 30000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      quantity: 0,
+      shopId: '3',
+    ),
+    const ShopItem(
+      id: 'bag_2',
       name: 'bag_2',
       price: 25000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Ks5eq4QpSj0usZ7iQwdh9txuKp4z44m2bYn24sp7BlXaOkymF0Q0dZzXrO7rQPqI-9hRPb9Q2i0o6H3z0CIFm953foDgfq9O27TwMhWwusWN4ewsxrAcUqHAXHD_wz9tRpSxvFDa05k/s400/waist_bag.png',
       category: 'BAG',
-      shopIds: ['3'],
+      quantity: 3,
+      shopId: '3',
     ),
     const ShopItem(
-      id: '3',
+      id: 'bag_3',
       name: 'bag_3',
       price: 20000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
       category: 'BAG',
-      shopIds: ['1', '2'],
+      quantity: 2,
+      shopId: '1',
     ),
     const ShopItem(
-      id: '4',
+      id: 'bag_3',
+      name: 'bag_3',
+      price: 20000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      quantity: 2,
+      shopId: '2',
+    ),
+    const ShopItem(
+      id: 'bag_4',
       name: 'bag_4',
       price: 15000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Ks5eq4QpSj0usZ7iQwdh9txuKp4z44m2bYn24sp7BlXaOkymF0Q0dZzXrO7rQPqI-9hRPb9Q2i0o6H3z0CIFm953foDgfq9O27TwMhWwusWN4ewsxrAcUqHAXHD_wz9tRpSxvFDa05k/s400/waist_bag.png',
       category: 'BAG',
-      shopIds: ['1', '3'],
+      quantity: 2,
+      shopId: '1',
     ),
     const ShopItem(
-      id: '5',
+      id: 'bag_4',
+      name: 'bag_4',
+      price: 15000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Ks5eq4QpSj0usZ7iQwdh9txuKp4z44m2bYn24sp7BlXaOkymF0Q0dZzXrO7rQPqI-9hRPb9Q2i0o6H3z0CIFm953foDgfq9O27TwMhWwusWN4ewsxrAcUqHAXHD_wz9tRpSxvFDa05k/s400/waist_bag.png',
+      category: 'BAG',
+      quantity: 2,
+      shopId: '3',
+    ),
+    const ShopItem(
+      id: 'bag_5',
       name: 'bag_5',
+      quantity: 0,
       price: 10000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
       category: 'BAG',
-      shopIds: ['2', '3', '4', '5'],
+      shopId: '2',
     ),
     const ShopItem(
-      id: '6',
+      id: 'bag_5',
+      name: 'bag_5',
+      quantity: 3,
+      price: 10000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      shopId: '3',
+    ),
+    const ShopItem(
+      id: 'bag_5',
+      name: 'bag_5',
+      quantity: 1,
+      price: 10000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      shopId: '4',
+    ),
+    const ShopItem(
+      id: 'bag_5',
+      name: 'bag_5',
+      quantity: 0,
+      price: 10000,
+      imageUrl:
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
+      category: 'BAG',
+      shopId: '5',
+    ),
+    const ShopItem(
+      id: 'bag_6',
+      quantity: 12,
       name: 'bag_6',
       price: 5000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Ks5eq4QpSj0usZ7iQwdh9txuKp4z44m2bYn24sp7BlXaOkymF0Q0dZzXrO7rQPqI-9hRPb9Q2i0o6H3z0CIFm953foDgfq9O27TwMhWwusWN4ewsxrAcUqHAXHD_wz9tRpSxvFDa05k/s400/waist_bag.png',
       category: 'BAG',
-      shopIds: ['1'],
+      shopId: '1',
     ),
   ];
 
