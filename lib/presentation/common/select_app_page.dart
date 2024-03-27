@@ -40,7 +40,7 @@ class SelectAppPage extends ConsumerWidget {
                         item: (ref.read(shopItemRepositoryProvider)
                                 as MockShopItemRepository)
                             .shopItems
-                            .firstWhere((element) => element.id == '5'),
+                            .firstWhere((element) => element.id == 'bag_5'),
                       );
                     },
                   ),

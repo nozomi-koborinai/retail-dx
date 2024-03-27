@@ -35,7 +35,7 @@ class RootPage extends HookConsumerWidget {
             item:
                 (ref.read(shopItemRepositoryProvider) as MockShopItemRepository)
                     .shopItems
-                    .firstWhere((element) => element.id == '5'),
+                    .firstWhere((element) => element.id == 'bag_5'),
           );
         },
         onUnAuthenticated: () => const Center(
