@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:retail_dx/presentation/common/select_app_page.dart';
 
 import '../../application/auth/register_anonymous_user_usecase.dart';
+import '../../domain/repository/shop_item_repository.dart';
 import '../../infrastructure/firebase/auth_repository.dart';
+import '../../infrastructure/firebase/mock/mock_shop_item_repository.dart';
+import '../google_maps/maps_view_dx_page.dart';
 
 final rootPageKey = Provider((ref) => GlobalKey<NavigatorState>());
 
@@ -26,7 +28,16 @@ class RootPage extends HookConsumerWidget {
     return Scaffold(
       key: ref.watch(rootPageKey),
       body: AuthDependentBuilder(
-        onAuthenticated: (userId) => const SelectAppPage(),
+        onAuthenticated: (userId) {
+          return ItemMapPage(
+            // todo:現在はデモ用に仮で id を指定している
+            // また、デモ用なので Interface の実態が Mock であることは確定している
+            item:
+                (ref.read(shopItemRepositoryProvider) as MockShopItemRepository)
+                    .shopItems
+                    .firstWhere((element) => element.id == '5'),
+          );
+        },
         onUnAuthenticated: () => const Center(
           child: CircularProgressIndicator(),
         ),
