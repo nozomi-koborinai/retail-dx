@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/geo_location.dart';
 import '../../../domain/shop_info.dart';
+import '../../../domain/shop_item.dart';
 import '../converter.dart';
 
 part 'shop_info_document.freezed.dart';
@@ -24,13 +25,14 @@ class ShopInfoDocument with _$ShopInfoDocument {
       _$ShopInfoDocumentFromJson(json);
 
   /// ShopInfoDocument -> ShopInfo
-  ShopInfo toShopInfo({required String id}) {
+  ShopInfo toShopInfo({required String id, required List<ShopItem> items}) {
     return ShopInfo(
       id: id,
       name: name,
       address: address,
       imageUrl: imageUrl,
       location: location ?? const GeoLocation(),
+      items: items,
     );
   }
 }

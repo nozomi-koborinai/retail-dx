@@ -23,8 +23,8 @@ mixin _$ShopItemDocument {
   String get name => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  List<String> get shopIds => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampConverter()
@@ -46,8 +46,8 @@ abstract class $ShopItemDocumentCopyWith<$Res> {
       {String name,
       String category,
       String imageUrl,
-      List<String> shopIds,
       int price,
+      int quantity,
       @TimestampConverter() DateTime? createdAt,
       @TimestampConverter() DateTime? updatedAt});
 }
@@ -68,8 +68,8 @@ class _$ShopItemDocumentCopyWithImpl<$Res, $Val extends ShopItemDocument>
     Object? name = null,
     Object? category = null,
     Object? imageUrl = null,
-    Object? shopIds = null,
     Object? price = null,
+    Object? quantity = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -86,13 +86,13 @@ class _$ShopItemDocumentCopyWithImpl<$Res, $Val extends ShopItemDocument>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      shopIds: null == shopIds
-          ? _value.shopIds
-          : shopIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
               as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -118,8 +118,8 @@ abstract class _$$ShopItemDocumentImplCopyWith<$Res>
       {String name,
       String category,
       String imageUrl,
-      List<String> shopIds,
       int price,
+      int quantity,
       @TimestampConverter() DateTime? createdAt,
       @TimestampConverter() DateTime? updatedAt});
 }
@@ -138,8 +138,8 @@ class __$$ShopItemDocumentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? category = null,
     Object? imageUrl = null,
-    Object? shopIds = null,
     Object? price = null,
+    Object? quantity = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -156,13 +156,13 @@ class __$$ShopItemDocumentImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      shopIds: null == shopIds
-          ? _value._shopIds
-          : shopIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
               as int,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -178,16 +178,16 @@ class __$$ShopItemDocumentImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ShopItemDocumentImpl implements _ShopItemDocument {
+class _$ShopItemDocumentImpl extends _ShopItemDocument {
   const _$ShopItemDocumentImpl(
       {required this.name,
       required this.category,
       required this.imageUrl,
-      required final List<String> shopIds,
       required this.price,
+      required this.quantity,
       @TimestampConverter() this.createdAt,
       @TimestampConverter() this.updatedAt})
-      : _shopIds = shopIds;
+      : super._();
 
   factory _$ShopItemDocumentImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShopItemDocumentImplFromJson(json);
@@ -198,16 +198,10 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
   final String category;
   @override
   final String imageUrl;
-  final List<String> _shopIds;
-  @override
-  List<String> get shopIds {
-    if (_shopIds is EqualUnmodifiableListView) return _shopIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_shopIds);
-  }
-
   @override
   final int price;
+  @override
+  final int quantity;
   @override
   @TimestampConverter()
   final DateTime? createdAt;
@@ -217,7 +211,7 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
 
   @override
   String toString() {
-    return 'ShopItemDocument(name: $name, category: $category, imageUrl: $imageUrl, shopIds: $shopIds, price: $price, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ShopItemDocument(name: $name, category: $category, imageUrl: $imageUrl, price: $price, quantity: $quantity, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -230,8 +224,9 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
                 other.category == category) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            const DeepCollectionEquality().equals(other._shopIds, _shopIds) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -240,15 +235,8 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      category,
-      imageUrl,
-      const DeepCollectionEquality().hash(_shopIds),
-      price,
-      createdAt,
-      updatedAt);
+  int get hashCode => Object.hash(runtimeType, name, category, imageUrl, price,
+      quantity, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -265,16 +253,17 @@ class _$ShopItemDocumentImpl implements _ShopItemDocument {
   }
 }
 
-abstract class _ShopItemDocument implements ShopItemDocument {
+abstract class _ShopItemDocument extends ShopItemDocument {
   const factory _ShopItemDocument(
           {required final String name,
           required final String category,
           required final String imageUrl,
-          required final List<String> shopIds,
           required final int price,
+          required final int quantity,
           @TimestampConverter() final DateTime? createdAt,
           @TimestampConverter() final DateTime? updatedAt}) =
       _$ShopItemDocumentImpl;
+  const _ShopItemDocument._() : super._();
 
   factory _ShopItemDocument.fromJson(Map<String, dynamic> json) =
       _$ShopItemDocumentImpl.fromJson;
@@ -286,9 +275,9 @@ abstract class _ShopItemDocument implements ShopItemDocument {
   @override
   String get imageUrl;
   @override
-  List<String> get shopIds;
-  @override
   int get price;
+  @override
+  int get quantity;
   @override
   @TimestampConverter()
   DateTime? get createdAt;
