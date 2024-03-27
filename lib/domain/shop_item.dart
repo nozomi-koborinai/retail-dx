@@ -9,7 +9,8 @@ class ShopItem with _$ShopItem {
     required String name,
     required String category,
     required String imageUrl,
-    required List<String> shopIds,
+    required String shopId,
     required int price,
+    required int quantity,
   }) = _ShopItem;
 }

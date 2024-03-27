@@ -21,6 +21,7 @@ mixin _$ShopInfo {
   String get address => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   GeoLocation get location => throw _privateConstructorUsedError;
+  List<ShopItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopInfoCopyWith<ShopInfo> get copyWith =>
@@ -37,7 +38,8 @@ abstract class $ShopInfoCopyWith<$Res> {
       String name,
       String address,
       String imageUrl,
-      GeoLocation location});
+      GeoLocation location,
+      List<ShopItem> items});
 
   $GeoLocationCopyWith<$Res> get location;
 }
@@ -60,6 +62,7 @@ class _$ShopInfoCopyWithImpl<$Res, $Val extends ShopInfo>
     Object? address = null,
     Object? imageUrl = null,
     Object? location = null,
+    Object? items = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,6 +85,10 @@ class _$ShopInfoCopyWithImpl<$Res, $Val extends ShopInfo>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as GeoLocation,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ShopItem>,
     ) as $Val);
   }
 
@@ -107,7 +114,8 @@ abstract class _$$ShopInfoImplCopyWith<$Res>
       String name,
       String address,
       String imageUrl,
-      GeoLocation location});
+      GeoLocation location,
+      List<ShopItem> items});
 
   @override
   $GeoLocationCopyWith<$Res> get location;
@@ -129,6 +137,7 @@ class __$$ShopInfoImplCopyWithImpl<$Res>
     Object? address = null,
     Object? imageUrl = null,
     Object? location = null,
+    Object? items = null,
   }) {
     return _then(_$ShopInfoImpl(
       id: null == id
@@ -151,6 +160,10 @@ class __$$ShopInfoImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as GeoLocation,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ShopItem>,
     ));
   }
 }
@@ -163,7 +176,9 @@ class _$ShopInfoImpl implements _ShopInfo {
       required this.name,
       required this.address,
       required this.imageUrl,
-      required this.location});
+      required this.location,
+      required final List<ShopItem> items})
+      : _items = items;
 
   @override
   final String id;
@@ -175,10 +190,17 @@ class _$ShopInfoImpl implements _ShopInfo {
   final String imageUrl;
   @override
   final GeoLocation location;
+  final List<ShopItem> _items;
+  @override
+  List<ShopItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
 
   @override
   String toString() {
-    return 'ShopInfo(id: $id, name: $name, address: $address, imageUrl: $imageUrl, location: $location)';
+    return 'ShopInfo(id: $id, name: $name, address: $address, imageUrl: $imageUrl, location: $location, items: $items)';
   }
 
   @override
@@ -192,12 +214,13 @@ class _$ShopInfoImpl implements _ShopInfo {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            const DeepCollectionEquality().equals(other._items, _items));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, address, imageUrl, location);
+  int get hashCode => Object.hash(runtimeType, id, name, address, imageUrl,
+      location, const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -212,7 +235,8 @@ abstract class _ShopInfo implements ShopInfo {
       required final String name,
       required final String address,
       required final String imageUrl,
-      required final GeoLocation location}) = _$ShopInfoImpl;
+      required final GeoLocation location,
+      required final List<ShopItem> items}) = _$ShopInfoImpl;
 
   @override
   String get id;
@@ -224,6 +248,8 @@ abstract class _ShopInfo implements ShopInfo {
   String get imageUrl;
   @override
   GeoLocation get location;
+  @override
+  List<ShopItem> get items;
   @override
   @JsonKey(ignore: true)
   _$$ShopInfoImplCopyWith<_$ShopInfoImpl> get copyWith =>
