@@ -164,6 +164,14 @@ class MockShopItemRepository implements ShopItemRepository {
   }
 
   @override
+  Future<List<ShopItem>> fetchByShopId(String shopId) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => shopItems.where((shopItem) => shopItem.shopId == shopId).toList(),
+    );
+  }
+
+  @override
   Future<void> update(ShopItem shopItem) {
     return Future.delayed(const Duration(seconds: 1), () {
       final index = shopItems.indexWhere((item) => item.id == shopItem.id);
