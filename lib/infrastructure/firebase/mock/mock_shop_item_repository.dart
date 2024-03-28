@@ -156,10 +156,10 @@ class MockShopItemRepository implements ShopItemRepository {
   }
 
   @override
-  Future<ShopItem> fetchById(String id) {
+  Future<List<ShopItem>> fetchById(String id) {
     return Future.delayed(
       const Duration(seconds: 1),
-      () => shopItems.firstWhere((shopItem) => shopItem.id == id),
+      () => shopItems.where((shopItem) => shopItem.id == id).toList(),
     );
   }
 
