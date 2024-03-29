@@ -12,9 +12,8 @@ _$ShopItemDocumentImpl _$$ShopItemDocumentImplFromJson(
       name: json['name'] as String,
       category: json['category'] as String,
       imageUrl: json['imageUrl'] as String,
-      shopIds:
-          (json['shopIds'] as List<dynamic>).map((e) => e as String).toList(),
       price: json['price'] as int,
+      quantity: json['quantity'] as int,
       createdAt: _$JsonConverterFromJson<Object, DateTime>(
           json['createdAt'], const TimestampConverter().fromJson),
       updatedAt: _$JsonConverterFromJson<Object, DateTime>(
@@ -27,8 +26,8 @@ Map<String, dynamic> _$$ShopItemDocumentImplToJson(
       'name': instance.name,
       'category': instance.category,
       'imageUrl': instance.imageUrl,
-      'shopIds': instance.shopIds,
       'price': instance.price,
+      'quantity': instance.quantity,
       'createdAt': _$JsonConverterToJson<Object, DateTime>(
           instance.createdAt, const TimestampConverter().toJson),
       'updatedAt': _$JsonConverterToJson<Object, DateTime>(

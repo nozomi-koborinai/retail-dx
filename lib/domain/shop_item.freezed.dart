@@ -20,8 +20,9 @@ mixin _$ShopItem {
   String get name => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  List<String> get shopIds => throw _privateConstructorUsedError;
+  String get shopId => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopItemCopyWith<ShopItem> get copyWith =>
@@ -38,8 +39,9 @@ abstract class $ShopItemCopyWith<$Res> {
       String name,
       String category,
       String imageUrl,
-      List<String> shopIds,
-      int price});
+      String shopId,
+      int price,
+      int quantity});
 }
 
 /// @nodoc
@@ -59,8 +61,9 @@ class _$ShopItemCopyWithImpl<$Res, $Val extends ShopItem>
     Object? name = null,
     Object? category = null,
     Object? imageUrl = null,
-    Object? shopIds = null,
+    Object? shopId = null,
     Object? price = null,
+    Object? quantity = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -79,13 +82,17 @@ class _$ShopItemCopyWithImpl<$Res, $Val extends ShopItem>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      shopIds: null == shopIds
-          ? _value.shopIds
-          : shopIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -104,8 +111,9 @@ abstract class _$$ShopItemImplCopyWith<$Res>
       String name,
       String category,
       String imageUrl,
-      List<String> shopIds,
-      int price});
+      String shopId,
+      int price,
+      int quantity});
 }
 
 /// @nodoc
@@ -123,8 +131,9 @@ class __$$ShopItemImplCopyWithImpl<$Res>
     Object? name = null,
     Object? category = null,
     Object? imageUrl = null,
-    Object? shopIds = null,
+    Object? shopId = null,
     Object? price = null,
+    Object? quantity = null,
   }) {
     return _then(_$ShopItemImpl(
       id: null == id
@@ -143,13 +152,17 @@ class __$$ShopItemImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      shopIds: null == shopIds
-          ? _value._shopIds
-          : shopIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -163,9 +176,9 @@ class _$ShopItemImpl implements _ShopItem {
       required this.name,
       required this.category,
       required this.imageUrl,
-      required final List<String> shopIds,
-      required this.price})
-      : _shopIds = shopIds;
+      required this.shopId,
+      required this.price,
+      required this.quantity});
 
   @override
   final String id;
@@ -175,20 +188,16 @@ class _$ShopItemImpl implements _ShopItem {
   final String category;
   @override
   final String imageUrl;
-  final List<String> _shopIds;
   @override
-  List<String> get shopIds {
-    if (_shopIds is EqualUnmodifiableListView) return _shopIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_shopIds);
-  }
-
+  final String shopId;
   @override
   final int price;
+  @override
+  final int quantity;
 
   @override
   String toString() {
-    return 'ShopItem(id: $id, name: $name, category: $category, imageUrl: $imageUrl, shopIds: $shopIds, price: $price)';
+    return 'ShopItem(id: $id, name: $name, category: $category, imageUrl: $imageUrl, shopId: $shopId, price: $price, quantity: $quantity)';
   }
 
   @override
@@ -202,13 +211,15 @@ class _$ShopItemImpl implements _ShopItem {
                 other.category == category) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            const DeepCollectionEquality().equals(other._shopIds, _shopIds) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.shopId, shopId) || other.shopId == shopId) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, category, imageUrl,
-      const DeepCollectionEquality().hash(_shopIds), price);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, category, imageUrl, shopId, price, quantity);
 
   @JsonKey(ignore: true)
   @override
@@ -223,8 +234,9 @@ abstract class _ShopItem implements ShopItem {
       required final String name,
       required final String category,
       required final String imageUrl,
-      required final List<String> shopIds,
-      required final int price}) = _$ShopItemImpl;
+      required final String shopId,
+      required final int price,
+      required final int quantity}) = _$ShopItemImpl;
 
   @override
   String get id;
@@ -235,9 +247,11 @@ abstract class _ShopItem implements ShopItem {
   @override
   String get imageUrl;
   @override
-  List<String> get shopIds;
+  String get shopId;
   @override
   int get price;
+  @override
+  int get quantity;
   @override
   @JsonKey(ignore: true)
   _$$ShopItemImplCopyWith<_$ShopItemImpl> get copyWith =>
