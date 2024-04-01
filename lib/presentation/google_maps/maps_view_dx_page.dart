@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:retail_dx/application/shop/states/shop_items.dart';
 import 'package:retail_dx/domain/shop_item.dart';
 import 'package:retail_dx/presentation/components/async_value_handler.dart';
@@ -197,6 +198,9 @@ class _ItemMapPageState extends ConsumerState<ItemMapPage>
             Scaffold(
               extendBodyBehindAppBar: true,
               body: GoogleMap(
+                onTap: (_) => ref.read(isShowListStateProvider.notifier).update(
+                      (value) => false,
+                    ),
                 markers: shopItemFusions.map(
                   (shopItemFusion) {
                     final shopInfo = shopItemFusion.$1;
@@ -249,113 +253,117 @@ class _ItemMapPageState extends ConsumerState<ItemMapPage>
             ),
             ref.watch(isShowListStateProvider)
                 ? Dialog(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                Image.network(
-                                  widget.item
-                                      .imageUrl, // Replace with your item's image URL
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                  height: 120,
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Pickup today',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                    child: PointerInterceptor(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                children: [
+                                  Image.network(
+                                    widget.item
+                                        .imageUrl, // Replace with your item's image URL
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                    height: 120,
                                   ),
-                                ),
-                                SizedBox(height: 8),
-                                TextFormField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter your postcode',
-                                    suffixIcon: Icon(Icons.search),
-                                    border: OutlineInputBorder(),
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 8),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'Pickup today',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 16),
-                              ],
+                                  SizedBox(height: 8),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your postcode',
+                                      suffixIcon: Icon(Icons.search),
+                                      border: OutlineInputBorder(),
+                                      contentPadding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                ],
+                              ),
                             ),
-                          ),
-                          Divider(),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: shopItemFusions
-                                .length, // Replace with your actual store list count
-                            itemBuilder: (BuildContext context, int index) {
-                              // Replace with your actual data model
-                              final shop = shopItemFusions[index];
-                              return ListTile(
-                                title: Text(shop.$1.name),
-                                // subtitle: Text(
-                                //   '${shop.distance} mi - ${shop.time} min',
-                                // ),
-                                trailing: ElevatedButton(
-                                  onPressed: () {
-                                    // Handle your curbside pickup logic here
-                                  },
-                                  child: Text('Curbside pickup'),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor,
+                            Divider(),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: shopItemFusions
+                                  .length, // Replace with your actual store list count
+                              itemBuilder: (BuildContext context, int index) {
+                                // Replace with your actual data model
+                                final shop = shopItemFusions[index];
+                                return ListTile(
+                                  title: Text(shop.$1.name),
+                                  // subtitle: Text(
+                                  //   '${shop.distance} mi - ${shop.time} min',
+                                  // ),
+                                  trailing: ElevatedButton(
+                                    onPressed: () {
+                                      // Handle your curbside pickup logic here
+                                    },
+                                    child: Text('Curbside pickup'),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )
-                : Positioned(
-                    top: 35,
-                    bottom: 0,
-                    left: 35,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                          child: Image.network(
-                            widget.item.imageUrl,
-                            fit: BoxFit.cover,
+                : PointerInterceptor(
+                    child: Positioned(
+                      top: 35,
+                      bottom: 0,
+                      left: 35,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 200,
+                            child: Image.network(
+                              widget.item.imageUrl,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.item.name,
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.item.name,
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () => ref
-                                    .read(isShowListStateProvider.notifier)
-                                    .update((_) => true),
-                                child: Text('Show list'),
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue, // Button color
-                                  onPrimary: Colors.white, // Text color
+                                SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: () => ref
+                                      .read(isShowListStateProvider.notifier)
+                                      .update((_) => true),
+                                  child: Text('Show list'),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.blue, // Button color
+                                    onPrimary: Colors.white, // Text color
+                                  ),
                                 ),
-                              ),
-                              // Here you can add more UI elements as needed
-                            ],
+                                // Here you can add more UI elements as needed
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   )
           ],
