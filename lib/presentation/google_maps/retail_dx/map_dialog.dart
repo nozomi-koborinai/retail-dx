@@ -15,7 +15,18 @@ class MapDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0), // 角の丸み
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // 影の位置を調整
+            ),
+          ],
+        ),
         width: MediaQuery.of(context).size.width * 0.4,
         padding: const EdgeInsets.all(8.0),
         child: PointerInterceptor(
