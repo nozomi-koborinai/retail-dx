@@ -16,6 +16,8 @@ import '../../mixin/error_handler_mixin.dart';
 
 final isShowListStateProvider = StateProvider<bool>((_) => false);
 
+final polyLinePointsStateProvider = StateProvider<List<LatLng>>((_) => []);
+
 class ItemMapPage extends ConsumerStatefulWidget {
   const ItemMapPage({super.key, required this.item});
   final ShopItem item;
@@ -33,18 +35,6 @@ class _ItemMapPageState extends ConsumerState<ItemMapPage>
     final shopItemFusionsAsyncValue = ref.watch(
       shopItemFusionsProvider(widget.item.id),
     );
-
-    ref.listen(currentMapPositionProvider, (_, next) async {
-      final controller = await mapController.future;
-      await controller.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(next.latitude, next.longitude),
-            zoom: 13.0,
-          ),
-        ),
-      );
-    });
 
     return AsyncValueHandler(
       value: shopItemFusionsAsyncValue,
@@ -73,28 +63,21 @@ class _ItemMapPageState extends ConsumerState<ItemMapPage>
                     );
                   },
                 ).toSet(),
-                // polylines: shopItemFusions.map(
-                //   (shopItemFusion) {
-                //     final shopInfo = shopItemFusion.$1;
-                //     return Polyline(
-                //       polylineId: PolylineId(shopInfo.id),
-                //       color: Colors.orange,
-                //       width: 4,
-                //       points: [
-                //         ref.read(currentMapPositionProvider),
-                //         LatLng(
-                //           shopInfo.location.latitude,
-                //           shopInfo.location.longitude,
-                //         ),
-                //       ],
-                //     );
-                //   },
-                // ).toSet(),
+                polylines: {
+                  Polyline(
+                    polylineId: const PolylineId('route'),
+                    points: ref.watch(polyLinePointsStateProvider),
+                    width: 3,
+                    color: Colors.orange,
+                    patterns: [PatternItem.dash(20), PatternItem.gap(10)],
+                  )
+                },
                 minMaxZoomPreference: const MinMaxZoomPreference(0, 20),
                 myLocationEnabled: true,
                 zoomControlsEnabled: true,
                 onMapCreated: (controller) async {
                   mapController.complete(controller);
+                  // controller.showMarkerInfoWindow(markerId)
                   final value = await rootBundle
                       .loadString('assets/maps/maps_style.json');
                   final futureController = await mapController.future;
@@ -103,7 +86,7 @@ class _ItemMapPageState extends ConsumerState<ItemMapPage>
                 myLocationButtonEnabled: true,
                 initialCameraPosition: CameraPosition(
                   target: ref.read(currentMapPositionProvider),
-                  zoom: 13.0,
+                  zoom: 12.5,
                 ),
               ),
             ),
