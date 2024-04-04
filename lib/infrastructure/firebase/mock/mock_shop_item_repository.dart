@@ -117,7 +117,7 @@ class MockShopItemRepository implements ShopItemRepository {
     const ShopItem(
       id: 'bag_5',
       name: 'bag_5',
-      quantity: 0,
+      quantity: 5,
       price: 10000,
       imageUrl:
           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYAy3p6oNydqf_7d7fzgwuFGRG2ICXlW0gktqvjEALbl0I0UqFGNUPjPevLZRXTOqzVEQC2E_pWF3HqGAHP225fccnwIJEhGItYqj14h1Pvu8BsG-chGjJgt5fcWflLO2tEbf1lRvXn2g/s400/fashion_clutch_bag.png',
