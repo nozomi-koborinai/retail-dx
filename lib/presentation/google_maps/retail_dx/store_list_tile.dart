@@ -57,6 +57,7 @@ class StoreListTile extends ConsumerWidget {
             ),
           ),
           Flexible(child: Text('$distance km away')),
+          const Flexible(child: Icon(Icons.umbrella)),
           OutlinedButton(
             onPressed: () async {
               final routeDetails =
