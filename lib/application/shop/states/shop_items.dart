@@ -16,6 +16,7 @@ final shopItemFusionsProvider =
   final shopItems =
       await ref.watch(shopItemRepositoryProvider).fetchById(itemId);
   for (final shopItem in shopItems) {
+    if (shopItem.quantity == 0) continue;
     final shopInfo =
         await ref.watch(shopInfoRepositoryProvider).fetchById(shopItem.shopId);
     result.add((shopInfo, shopItem));

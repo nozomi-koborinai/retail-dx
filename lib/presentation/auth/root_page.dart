@@ -6,7 +6,7 @@ import '../../application/auth/register_anonymous_user_usecase.dart';
 import '../../domain/repository/shop_item_repository.dart';
 import '../../infrastructure/firebase/auth_repository.dart';
 import '../../infrastructure/firebase/mock/mock_shop_item_repository.dart';
-import '../google_maps/maps_view_dx_page.dart';
+import '../google_maps/retail_dx/maps_view_dx_page.dart';
 
 final rootPageKey = Provider((ref) => GlobalKey<NavigatorState>());
 

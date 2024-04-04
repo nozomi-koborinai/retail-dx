@@ -4,7 +4,7 @@ import 'package:retail_dx/domain/repository/shop_item_repository.dart';
 import 'package:retail_dx/infrastructure/firebase/mock/mock_shop_item_repository.dart';
 import 'package:retail_dx/presentation/google_maps/maps_view_page.dart';
 
-import '../google_maps/maps_view_dx_page.dart';
+import '../google_maps/retail_dx/maps_view_dx_page.dart';
 
 class SelectAppPage extends ConsumerWidget {
   const SelectAppPage({super.key});
