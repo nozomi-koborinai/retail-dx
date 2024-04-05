@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:retail_dx/domain/weather/weather.dart';
 import 'package:retail_dx/presentation/google_maps/retail_dx/store_list_tile.dart';
 
 import '../../../application/google_maps/states/current_map_position.dart';
@@ -12,7 +13,7 @@ class MapDialog extends ConsumerWidget {
   const MapDialog(
       {super.key, required this.imageUrl, required this.shopItemFusions});
   final String imageUrl;
-  final List<(ShopInfo, ShopItem)> shopItemFusions;
+  final List<(ShopInfo, ShopItem, Weather)> shopItemFusions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
