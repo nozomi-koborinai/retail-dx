@@ -22,12 +22,16 @@ class WeatherRepository {
   final callable = FirebaseFunctions.instanceFor(region: 'asia-northeast1')
       .httpsCallable('sendPostRequest');
 
-  Future<Weather> fetch() async {
+  Future<Weather> fetch({
+    required double latitude,
+    required double longitude,
+  }) async {
     try {
+      final q = '$latitude,$longitude,Japan';
       final HttpsCallableResult result = await callable.call(
         {
           'url':
-              'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=Japan&aqi=yes',
+              'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$q&aqi=no',
         },
       );
       return Weather.fromJson(result.data);
