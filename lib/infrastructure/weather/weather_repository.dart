@@ -31,7 +31,7 @@ class WeatherRepository {
       final HttpsCallableResult result = await callable.call(
         {
           'url':
-              'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$q&aqi=no',
+              'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$q&aqi=no',
         },
       );
       return Weather.fromJson(result.data);
