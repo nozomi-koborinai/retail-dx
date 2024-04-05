@@ -13,6 +13,7 @@ final envProvider = Provider<Env>(
 class Env with _$Env {
   const factory Env({
     required String googleMapsApiKey,
+    required String weatherApiKey,
   }) = _Env;
 
   const Env._();
