@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Env {
   String get googleMapsApiKey => throw _privateConstructorUsedError;
+  String get weatherApiKey => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EnvCopyWith<Env> get copyWith => throw _privateConstructorUsedError;
@@ -27,7 +28,7 @@ abstract class $EnvCopyWith<$Res> {
   factory $EnvCopyWith(Env value, $Res Function(Env) then) =
       _$EnvCopyWithImpl<$Res, Env>;
   @useResult
-  $Res call({String googleMapsApiKey});
+  $Res call({String googleMapsApiKey, String weatherApiKey});
 }
 
 /// @nodoc
@@ -43,11 +44,16 @@ class _$EnvCopyWithImpl<$Res, $Val extends Env> implements $EnvCopyWith<$Res> {
   @override
   $Res call({
     Object? googleMapsApiKey = null,
+    Object? weatherApiKey = null,
   }) {
     return _then(_value.copyWith(
       googleMapsApiKey: null == googleMapsApiKey
           ? _value.googleMapsApiKey
           : googleMapsApiKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      weatherApiKey: null == weatherApiKey
+          ? _value.weatherApiKey
+          : weatherApiKey // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -59,7 +65,7 @@ abstract class _$$EnvImplCopyWith<$Res> implements $EnvCopyWith<$Res> {
       __$$EnvImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String googleMapsApiKey});
+  $Res call({String googleMapsApiKey, String weatherApiKey});
 }
 
 /// @nodoc
@@ -72,11 +78,16 @@ class __$$EnvImplCopyWithImpl<$Res> extends _$EnvCopyWithImpl<$Res, _$EnvImpl>
   @override
   $Res call({
     Object? googleMapsApiKey = null,
+    Object? weatherApiKey = null,
   }) {
     return _then(_$EnvImpl(
       googleMapsApiKey: null == googleMapsApiKey
           ? _value.googleMapsApiKey
           : googleMapsApiKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      weatherApiKey: null == weatherApiKey
+          ? _value.weatherApiKey
+          : weatherApiKey // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -85,14 +96,17 @@ class __$$EnvImplCopyWithImpl<$Res> extends _$EnvCopyWithImpl<$Res, _$EnvImpl>
 /// @nodoc
 
 class _$EnvImpl extends _Env {
-  const _$EnvImpl({required this.googleMapsApiKey}) : super._();
+  const _$EnvImpl({required this.googleMapsApiKey, required this.weatherApiKey})
+      : super._();
 
   @override
   final String googleMapsApiKey;
+  @override
+  final String weatherApiKey;
 
   @override
   String toString() {
-    return 'Env(googleMapsApiKey: $googleMapsApiKey)';
+    return 'Env(googleMapsApiKey: $googleMapsApiKey, weatherApiKey: $weatherApiKey)';
   }
 
   @override
@@ -101,11 +115,13 @@ class _$EnvImpl extends _Env {
         (other.runtimeType == runtimeType &&
             other is _$EnvImpl &&
             (identical(other.googleMapsApiKey, googleMapsApiKey) ||
-                other.googleMapsApiKey == googleMapsApiKey));
+                other.googleMapsApiKey == googleMapsApiKey) &&
+            (identical(other.weatherApiKey, weatherApiKey) ||
+                other.weatherApiKey == weatherApiKey));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, googleMapsApiKey);
+  int get hashCode => Object.hash(runtimeType, googleMapsApiKey, weatherApiKey);
 
   @JsonKey(ignore: true)
   @override
@@ -115,11 +131,15 @@ class _$EnvImpl extends _Env {
 }
 
 abstract class _Env extends Env {
-  const factory _Env({required final String googleMapsApiKey}) = _$EnvImpl;
+  const factory _Env(
+      {required final String googleMapsApiKey,
+      required final String weatherApiKey}) = _$EnvImpl;
   const _Env._() : super._();
 
   @override
   String get googleMapsApiKey;
+  @override
+  String get weatherApiKey;
   @override
   @JsonKey(ignore: true)
   _$$EnvImplCopyWith<_$EnvImpl> get copyWith =>

@@ -4,12 +4,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:retail_dx/domain/geo_location.dart';
 import 'package:retail_dx/domain/shop_info.dart';
 import 'package:retail_dx/domain/shop_item.dart';
+import 'package:retail_dx/domain/weather/weather.dart';
 import 'package:retail_dx/presentation/google_maps/retail_dx/maps_view_dx_page.dart';
 
 import '../../../application/google_maps/search_route_usecase.dart';
 
 class StoreListTile extends ConsumerWidget {
-  final (ShopInfo, ShopItem) shopItemFusion;
+  final (ShopInfo, ShopItem, Weather) shopItemFusion;
   final LatLng currentLocation;
 
   const StoreListTile({
@@ -22,6 +23,7 @@ class StoreListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final shopInfo = shopItemFusion.$1;
     final shopItem = shopItemFusion.$2;
+    final weather = shopItemFusion.$3;
     final distance = shopInfo.location.distance(GeoLocation(
       latitude: currentLocation.latitude,
       longitude: currentLocation.longitude,
@@ -57,7 +59,14 @@ class StoreListTile extends ConsumerWidget {
             ),
           ),
           Flexible(child: Text('$distance km away')),
-          const Flexible(child: Icon(Icons.umbrella)),
+          Flexible(
+            child: weather.current != null && weather.current!.condition != null
+                ? Image(
+                    image: NetworkImage(
+                        'https:${weather.current!.condition!.icon}'),
+                  )
+                : const SizedBox(),
+          ),
           OutlinedButton(
             onPressed: () async {
               final routeDetails =

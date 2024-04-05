@@ -54,6 +54,7 @@ Future<void> main() async {
         envProvider.overrideWithValue(
           Env(
             googleMapsApiKey: dotenv.get('GOOGLE_MAPS_API_KEY'),
+            weatherApiKey: dotenv.get('WEATHER_API_KEY'),
           ),
         ),
 
