@@ -8,7 +8,7 @@ import '../../domain/env.dart';
 /// [WeatherRepository] のインスタンスを提供する [Provider]
 final weatherRepositoryProvider = Provider<WeatherRepository>(
   (ref) => WeatherRepository(
-    apiKey: ref.read(envProvider).googleMapsApiKey,
+    apiKey: ref.read(envProvider).weatherApiKey,
   ),
 );
 
@@ -20,7 +20,7 @@ class WeatherRepository {
 
   final String apiKey;
   final callable = FirebaseFunctions.instanceFor(region: 'asia-northeast1')
-      .httpsCallable('sendPostRequest');
+      .httpsCallable('sendGetRequest');
 
   Future<Weather> fetch({
     required double latitude,
@@ -28,6 +28,7 @@ class WeatherRepository {
   }) async {
     try {
       final q = '$latitude,$longitude,Japan';
+
       final HttpsCallableResult result = await callable.call(
         {
           'url':
