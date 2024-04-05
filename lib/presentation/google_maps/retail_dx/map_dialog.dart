@@ -70,8 +70,9 @@ class MapDialog extends ConsumerWidget {
                           itemCount: shopItemFusions.length,
                           itemBuilder: (context, index) {
                             final shopItemFusion = shopItemFusions[index];
-                            if (shopItemFusion.$2.quantity == 0)
+                            if (shopItemFusion.$2.quantity == 0) {
                               return const SizedBox();
+                            }
                             return StoreListTile(
                               shopItemFusion: shopItemFusion,
                               currentLocation: ref.read(
